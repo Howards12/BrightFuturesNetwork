@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const events = await getCollection("events");
+events.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+---
+
+<BaseLayout title="Events & Workshops | Bright Futures Network" description="Upcoming events and workshops supporting immigrant students and families.">
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">Events & Workshops</h1>
+        <div class="bfn-accent"></div>
+        <div class="grid-3">
+          {events.map((e) => (
+            <div class="card pad" style="box-shadow:none;">
+              <strong>{e.data.title}</strong>
+              <div class="small">{e.data.date}{e.data.location ? ` • ${e.data.location}` : ""}</div>
+              {e.data.registrationLink && <a class="cta secondary" style="margin-top:10px;" href={e.data.registrationLink} target="_blank">Register</a>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

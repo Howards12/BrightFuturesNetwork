@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const stories = await getCollection("stories");
+---
+
+<BaseLayout title="Stories & Testimonials | Bright Futures Network" description="Stories from students, parents, and volunteers.">
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">Stories & Testimonials</h1>
+        <div class="bfn-accent"></div>
+        <div class="grid-3">
+          {stories.map((s) => (
+            <div class="card pad" style="box-shadow:none;">
+              <strong>{s.data.title}</strong>
+              <div class="small">{s.data.personType ?? "Story"}</div>
+              <div class="small">
+                <a href={`/stories/${s.slug}`}>Read</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

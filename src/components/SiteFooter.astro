@@ -1,0 +1,18 @@
+---
+const year = new Date().getFullYear();
+const email = "alineuwineza166@gmail.com";
+const phone = "346-754-9468";
+---
+<footer class="footer">
+  <div class="container">
+    <div class="kv">
+      <div><strong>Email:</strong> <a href={`mailto:${email}`}>{email}</a></div>
+      <div><strong>Phone:</strong> <a href={`tel:${phone.replaceAll("-", "")}`}>{phone}</a></div>
+      <div><strong>Location:</strong> Texas</div>
+    </div>
+
+    <p class="small" style="margin-top:12px;">
+      © {year} Bright Futures Network. Built by Vibes Digital Media.
+    </p>
+  </div>
+</footer>

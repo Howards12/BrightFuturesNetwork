@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+---
+
+<BaseLayout title="News & Updates | Bright Futures Network" description="Announcements, program updates, and community highlights.">
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">News & Updates</h1>
+        <div class="bfn-accent"></div>
+        <div class="grid-3">
+          {posts.map((p) => (
+            <a class="card pad" style="box-shadow:none;" href={`/news/${p.slug}`}>
+              <strong>{p.data.title}</strong>
+              <div class="small">{p.data.date}</div>
+              <div class="small">{p.data.description ?? ""}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

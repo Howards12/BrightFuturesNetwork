@@ -1,0 +1,49 @@
+---
+const nav = [
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Impact", href: "/impact" },
+  { label: "Get Involved", href: "/get-involved" },
+  { label: "Donate", href: "/donate" },
+  { label: "Events", href: "/events" },
+  { label: "Stories", href: "/stories" },
+  { label: "Resources", href: "/resources" },
+  { label: "News", href: "/news" },
+  { label: "Contact", href: "/contact" },
+];
+---
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <img src="/images/bfn-logo.png" alt="Bright Futures Network logo" />
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      <a class="cta" href="/donate">Donate</a>
+    </nav>
+
+    <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer">
+      Menu
+    </button>
+  </div>
+
+  <div class="container mobile-drawer" id="mobile-drawer">
+    {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+    <a class="cta" href="/donate">Donate</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector(".mobile-toggle");
+  const drawer = document.querySelector("#mobile-drawer");
+  if (btn && drawer) {
+    btn.addEventListener("click", () => {
+      const open = drawer.style.display === "block";
+      drawer.style.display = open ? "none" : "block";
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+  }
+</script>

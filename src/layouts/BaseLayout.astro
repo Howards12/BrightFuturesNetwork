@@ -1,0 +1,101 @@
+---
+import "../styles/site.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const {
+  title = "Bright Futures Network",
+  description = "Empowering immigrant students & families through education.",
+  ogImage = "/images/og.png",
+  enableTawk = true,
+  tawkSrc = "https://embed.tawk.to/YOUR_TAWK_PROPERTY_ID/default",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteHeader />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <!-- Cascading reveal on scroll -->
+    <script is:inline>
+      const els = Array.from(document.querySelectorAll(".reveal"));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("in");
+        });
+      }, { threshold: 0.12 });
+      els.forEach((el) => io.observe(el));
+    </script>
+    <script is:inline>
+        {`
+          var Tawk_API = Tawk_API || {};
+          var Tawk_LoadStart = new Date();
+      
+          // Custom business context (VERY useful)
+          Tawk_API.onLoad = function(){
+            Tawk_API.setAttributes({
+              business: "Bright Futures Network",
+              sector: "Nonprofit Education",
+              supportType: "Student & Family Support",
+              poweredBy: "Vibes Digital Media"
+            }, function(error){});
+          };
+      
+          (function(){
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/699b34538f3ea01c37046327/1ji348php';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1, s0);
+          })();
+        `}
+      </script>
+
+    <!-- Tawk.to Chat Widget -->
+<script is:inline>
+    {`
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      (function(){
+        var s1 = document.createElement("script"),
+            s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/699b34538f3ea01c37046327/1ji348php';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    `}
+  </script>
+    
+  </body>
+</html>

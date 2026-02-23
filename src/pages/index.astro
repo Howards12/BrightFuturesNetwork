@@ -1,17 +1,64 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Bright Futures Network"
+  description="Texas-based nonprofit empowering immigrant students and families through education."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="card pad reveal">
+        <div class="pill">Texas-based nonprofit • K–12 immigrant students & families</div>
+        <h1 class="h1">Empowering Immigrant Students & Families Through Education</h1>
+        <div class="bfn-accent"></div>
+        <p class="lead">
+          Bright Futures Network (BFN) supports immigrant students and families through tutoring, mentoring,
+          school orientation workshops, college preparation support, and culturally responsive guidance.
+        </p>
+        <div class="btnrow">
+          <a class="cta" href="/landing">Get Support</a>
+          <a class="cta secondary" href="/get-involved">Volunteer</a>
+          <a class="cta secondary" href="/donate">Donate</a>
+        </div>
+        <p class="small" style="margin-top:12px;">
+          You can replace every website image anytime (via CMS or swapping files in /public/images).
+        </p>
+      </div>
+
+      <div class="card pad reveal hero-photo">
+        <img src="/images/hero/hero-family.jpg" alt="Family-focused education support" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">What We Do</h2>
+      <div class="grid-3">
+        <div class="card pad reveal">
+          <img src="/images/illustrations/workshops.png" alt="" loading="lazy" />
+          <strong>School Orientation Workshops</strong>
+          <p class="small">Multi-language support to help families understand school processes and communication.</p>
+        </div>
+        <div class="card pad reveal">
+          <img src="/images/illustrations/mentoring.png" alt="" loading="lazy" />
+          <strong>Mentorship & Tutoring</strong>
+          <p class="small">Academic guidance, progress check-ins, and encouragement that supports student growth.</p>
+        </div>
+        <div class="card pad reveal">
+          <img src="/images/illustrations/college.png" alt="" loading="lazy" />
+          <strong>College Prep Support</strong>
+          <p class="small">Applications, scholarships, and FAFSA/financial aid guidance for high school students.</p>
+        </div>
+      </div>
+
+      <div class="banner reveal" style="margin-top:14px;">
+        <strong>Also offered:</strong>
+        <div class="small" style="margin-top:6px;">
+          Parent workshops • Community education nights • Language support • Advocacy guidance for school meetings
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
