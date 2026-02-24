@@ -1,41 +1,30 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getEntryBySlug } from "astro:content";
+export async function getStaticPaths() {
+  // List every route you want this file to generate.
+  // Example: /about maps to params.page = "about"
+  const pages = ["about", "contact", "privacy"];
 
-const { page } = Astro.params;
-
-const entry = await getEntryBySlug("pages", page!);
-if (!entry) {
-  return Astro.redirect("/");
+  return pages.map((page) => ({
+    params: { page },
+  }));
 }
 
-const { Content } = await entry.render();
-const data = entry.data;
+const { page } = Astro.params;
 ---
 
-<BaseLayout title={`${data.title} | Bright Futures Network`} description={data.description}>
-  <section class="section">
-    <div class="container">
-      <div class="card pad reveal">
-        <h1 class="h1">{data.title}</h1>
-        <div class="bfn-accent"></div>
-
-        {data.heroImage && (
-          <div class="hero-photo" style="margin: 10px 0 16px;">
-            <img src={data.heroImage} alt="" loading="lazy" />
-          </div>
-        )}
-
-        <div class="lead">
-          <Content />
-        </div>
-
-        {(data.ctaPrimaryLabel && data.ctaPrimaryHref) && (
-          <div class="btnrow" style="margin-top: 14px;">
-            <a class="cta" href={data.ctaPrimaryHref}>{data.ctaPrimaryLabel}</a>
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{page} | Bright Futures Network</title>
+  </head>
+  <body>
+    <main style="max-width: 720px; margin: 40px auto; font-family: system-ui;">
+      <h1>{page}</h1>
+      <p>
+        This page is generated from <code>[page].astro</code>. Update the
+        <code>pages</code> list in <code>getStaticPaths()</code> to control which routes are built.
+      </p>
+    </main>
+  </body>
+</html>

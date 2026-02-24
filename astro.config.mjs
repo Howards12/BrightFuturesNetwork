@@ -1,7 +1,5 @@
-import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: "https://Howards12.github.io/BrightFuturesNetwork",
-  integrations: [sitemap()],
+  site: 'https://www.brightfuturesnetwork.com'
 });
