@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const { slug } = Astro.params;
+const stories = await getCollection("stories");
+const entry = stories.find((s) => s.slug === slug);
+
+if (!entry) {
+  throw new Error(`Unknown story: ${slug}`);
+}
+
+const { Content } = await entry.render();
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Bright Futures Network`}
+  description={entry.data.personType ?? "Story from the Bright Futures Network community."}
+>
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">{entry.data.title}</h1>
+        <div class="bfn-accent"></div>
+
+        <p class="small" style="margin-bottom:12px;">
+          {entry.data.personType ?? "Story"}
+        </p>
+
+        <article class="prose">
+          <Content />
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
