@@ -1,28 +1,31 @@
 ---
+const base = import.meta.env.BASE_URL;
+
+// Added trailing slashes to hrefs for better compatibility with GitHub Pages
 const nav = [
-  { label: "About", href: "/about" },
-  { label: "Programs", href: "/programs" },
-  { label: "Impact", href: "/impact" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Donate", href: "/donate" },
-  { label: "Events", href: "/events" },
-  { label: "Stories", href: "/stories" },
-  { label: "Resources", href: "/resources" },
-  { label: "News", href: "/news" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: `${base}about/` },
+  { label: "Programs", href: `${base}programs/` },
+  { label: "Impact", href: `${base}impact/` },
+  { label: "Get Involved", href: `${base}get-involved/` },
+  { label: "Donate", href: `${base}donate/` },
+  { label: "Events", href: `${base}events/` },
+  { label: "Stories", href: `${base}stories/` },
+  { label: "Resources", href: `${base}resources/` },
+  { label: "News", href: `${base}news/` },
+  { label: "Contact", href: `${base}contact/` },
 ];
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="header">
   <div class="container header-inner">
-    <a class="brand" href="/">
-      <img src="/images/bfn-logo.png" alt="Bright Futures Network logo" />
+    <a class="brand" href={base}>
+      <img src={`${base}images/bfn-logo.png`} alt="Bright Futures Network logo" />
     </a>
 
     <nav class="nav" aria-label="Primary">
       {nav.map((i) => <a href={i.href}>{i.label}</a>)}
-      <a class="cta" href="/donate">Donate</a>
+      <a class="cta" href={`${base}donate/`}>Donate</a>
     </nav>
 
     <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer">
@@ -32,18 +35,19 @@ const nav = [
 
   <div class="container mobile-drawer" id="mobile-drawer">
     {nav.map((i) => <a href={i.href}>{i.label}</a>)}
-    <a class="cta" href="/donate">Donate</a>
+    <a class="cta" href={`${base}donate/`}>Donate</a>
   </div>
 </header>
 
 <script>
   const btn = document.querySelector(".mobile-toggle");
-  const drawer = document.querySelector("#mobile-drawer");
+  const drawer = document.querySelector("#mobile-drawer") as HTMLElement;
   if (btn && drawer) {
     btn.addEventListener("click", () => {
-      const open = drawer.style.display === "block";
-      drawer.style.display = open ? "none" : "block";
-      btn.setAttribute("aria-expanded", String(!open));
+      // Check for both empty string and 'none' to ensure the toggle works on first click
+      const isHidden = !drawer.style.display || drawer.style.display === "none";
+      drawer.style.display = isHidden ? "block" : "none";
+      btn.setAttribute("aria-expanded", String(isHidden));
     });
   }
 </script>

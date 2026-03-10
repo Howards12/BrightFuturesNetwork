@@ -1,9 +1,9 @@
 ---
 title: "Impact"
 description: "How Bright Futures Network supports student success through weekly tracking, family guidance, and school collaboration."
-heroImage: "/images/hero/landing-family.jpg"
+heroImage: "/images/impact-community.webp"
 ctaPrimaryLabel: "Support Our Work"
-ctaPrimaryHref: "/donate"
+ctaPrimaryHref: "/donate/"
 ---
 
 ## How We Measure Impact

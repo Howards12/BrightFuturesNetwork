@@ -1,9 +1,9 @@
 ---
 title: "Our Programs"
 description: "Explore BFN programs supporting immigrant students and families—workshops, mentoring, tutoring, and college prep."
-heroImage: "/images/hero/hero-family.jpg"
+heroImage: "/images/hero-family.webp"
 ctaPrimaryLabel: "Request Support"
-ctaPrimaryHref: "/contact"
+ctaPrimaryHref: "/contact/"
 ---
 
 ## Programs That Meet Families Where They Are

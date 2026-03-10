@@ -1,9 +1,9 @@
 ---
 title: "News & Updates"
 description: "Announcements and updates from Bright Futures Network."
-heroImage: "/images/hero/hero-family.jpg"
+heroImage: "/images/workshops.webp"
 ctaPrimaryLabel: "View News"
-ctaPrimaryHref: "/news"
+ctaPrimaryHref: "/news/"
 ---
 
 ## Updates

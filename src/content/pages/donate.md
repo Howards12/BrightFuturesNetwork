@@ -1,7 +1,7 @@
 ---
 title: "Donate"
 description: "Support Bright Futures Network—your donation helps immigrant students and families access education support."
-heroImage: "/images/hero/donate-family.jpg"
+heroImage: "/images/hero-family.webp"
 ctaPrimaryLabel: "Donate Now"
 ctaPrimaryHref: "#donate-links"
 ---

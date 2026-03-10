@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -13,7 +14,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="bfn-accent"></div>
 
         <div class="hero-photo" style="margin: 12px 0 16px;">
-          <img src="/images/hero/landing-family.jpg" alt="Family-focused support" loading="lazy" />
+          <img src={`${base}images/landing-family.webp`} alt="Family-focused support" loading="lazy" decoding="async" />
         </div>
 
         <p class="lead">
@@ -37,8 +38,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
 
         <div class="btnrow" style="margin-top:14px;">
-          <a class="cta" href="/contact">Request Support</a>
-          <a class="cta secondary" href="/programs">Explore Programs</a>
+          <a class="cta" href={`${base}contact/`}>Request Support</a>
+          <a class="cta secondary" href={`${base}programs/`}>Explore Programs</a>
         </div>
       </div>
     </div>

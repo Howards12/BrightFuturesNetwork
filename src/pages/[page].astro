@@ -1,30 +1,46 @@
 ---
-export async function getStaticPaths() {
-  // List every route you want this file to generate.
-  // Example: /about maps to params.page = "about"
-  const pages = ["about", "contact", "privacy"];
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-  return pages.map((page) => ({
-    params: { page },
-  }));
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((p) => ({ params: { page: p.slug } }));
 }
 
 const { page } = Astro.params;
+const pages = await getCollection("pages");
+const entry = pages.find((p) => p.slug === page);
+if (!entry) {
+  // Let Astro handle as a 404 at runtime; during build this shouldn't happen.
+  throw new Error(`Unknown page slug: ${page}`);
+}
+
+const { Content } = await entry.render();
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{page} | Bright Futures Network</title>
-  </head>
-  <body>
-    <main style="max-width: 720px; margin: 40px auto; font-family: system-ui;">
-      <h1>{page}</h1>
-      <p>
-        This page is generated from <code>[page].astro</code>. Update the
-        <code>pages</code> list in <code>getStaticPaths()</code> to control which routes are built.
-      </p>
-    </main>
-  </body>
-</html>
+<BaseLayout title={`${entry.data.title} | Bright Futures Network`} description={entry.data.description}>
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">{entry.data.title}</h1>
+        <div class="bfn-accent"></div>
+
+        {entry.data.heroImage && (
+          <div class="hero-photo" style="margin: 12px 0 16px;">
+            <img src={entry.data.heroImage} alt={entry.data.title} loading="lazy" decoding="async" />
+          </div>
+        )}
+
+        <article class="prose">
+          <Content />
+        </article>
+
+        {entry.data.ctaPrimaryLabel && entry.data.ctaPrimaryHref && (
+          <div class="btnrow" style="margin-top: 14px;">
+            <a class="cta" href={entry.data.ctaPrimaryHref}>{entry.data.ctaPrimaryLabel}</a>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

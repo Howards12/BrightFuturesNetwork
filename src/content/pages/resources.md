@@ -1,9 +1,9 @@
 ---
 title: "Resources"
 description: "Helpful guides for immigrant families navigating school systems, communication, and college preparation."
-heroImage: "/images/hero/landing-family.jpg"
+heroImage: "/images/tutoring.webp"
 ctaPrimaryLabel: "Get Support"
-ctaPrimaryHref: "/landing"
+ctaPrimaryHref: "/get-involved/"
 ---
 
 ## Resources for Families

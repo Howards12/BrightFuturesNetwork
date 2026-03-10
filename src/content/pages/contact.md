@@ -1,7 +1,7 @@
 ---
 title: "Contact Us"
 description: "Contact Bright Futures Network for support, volunteering, partnerships, or donation questions."
-heroImage: "/images/hero/landing-family.jpg"
+heroImage: "/images/landing-family.webp"
 ctaPrimaryLabel: "Send a Message"
 ctaPrimaryHref: "#contact-form"
 ---

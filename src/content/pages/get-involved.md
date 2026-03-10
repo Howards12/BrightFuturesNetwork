@@ -1,9 +1,9 @@
 ---
 title: "Get Involved"
 description: "Volunteer, partner, or support Bright Futures Network—help immigrant students and families thrive in Texas."
-heroImage: "/images/hero/hero-family.jpg"
+heroImage: "/images/volunteer-team.webp"
 ctaPrimaryLabel: "Volunteer"
-ctaPrimaryHref: "/contact"
+ctaPrimaryHref: "/contact/"
 ---
 
 ## Volunteer With BFN

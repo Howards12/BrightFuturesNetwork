@@ -1,9 +1,9 @@
 ---
 title: "Stories & Testimonials"
 description: "Read stories from students, parents, and volunteers connected to Bright Futures Network."
-heroImage: "/images/hero/hero-family.jpg"
+heroImage: "/images/volunteer-team.webp"
 ctaPrimaryLabel: "Read Stories"
-ctaPrimaryHref: "/stories"
+ctaPrimaryHref: "/stories/"
 ---
 
 ## Real People. Real Growth.

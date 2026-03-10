@@ -1,33 +1,37 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+const img = (p: string) => `${base}images/${p}`;
 ---
 
-<BaseLayout
-  title="Bright Futures Network"
-  description="Texas-based nonprofit empowering immigrant students and families through education."
->
+<BaseLayout title="Bright Futures Network">
   <section class="hero">
     <div class="container hero-grid">
       <div class="card pad reveal">
-        <div class="pill">Texas-based nonprofit • K–12 immigrant students & families</div>
+        <p class="kicker">Texas-based nonprofit • K–12 immigrant students & families</p>
         <h1 class="h1">Empowering Immigrant Students & Families Through Education</h1>
-        <div class="bfn-accent"></div>
         <p class="lead">
-          Bright Futures Network (BFN) supports immigrant students and families through tutoring, mentoring,
-          school orientation workshops, college preparation support, and culturally responsive guidance.
+          Bright Futures Network (BFN) supports immigrant students and families through tutoring,
+          mentoring, school orientation workshops, college preparation support, and culturally responsive guidance.
         </p>
-        <div class="btnrow">
-          <a class="cta" href="/landing">Get Support</a>
-          <a class="cta secondary" href="/get-involved">Volunteer</a>
-          <a class="cta secondary" href="/donate">Donate</a>
+
+        <div class="hero-cta">
+          <a class="btn" href={`${base}get-involved/`}>Get Support</a>
+          <a class="btn secondary" href={`${base}get-involved/`}>Volunteer</a>
+          <a class="btn dark" href={`${base}donate/`}>Donate</a>
         </div>
-        <p class="small" style="margin-top:12px;">
-          You can replace every website image anytime (via CMS or swapping files in /public/images).
-        </p>
       </div>
 
       <div class="card pad reveal hero-photo">
-        <img src="/images/hero/hero-family.jpg" alt="Family-focused education support" loading="eager" />
+        <img
+          id="hero-rotator"
+          src={img("hero-family.webp")}
+          data-base-url={base}
+          alt="Family-focused education support"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
   </section>
@@ -35,30 +39,121 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="section">
     <div class="container">
       <h2 class="section-title reveal">What We Do</h2>
+
       <div class="grid-3">
         <div class="card pad reveal">
-          <img src="/images/illustrations/workshops.png" alt="" loading="lazy" />
+          <img src={img("workshops.webp")} alt="School orientation workshops" loading="lazy" decoding="async" />
           <strong>School Orientation Workshops</strong>
-          <p class="small">Multi-language support to help families understand school processes and communication.</p>
+          <p class="small">Multi-language support to help families understand school processes.</p>
         </div>
+
         <div class="card pad reveal">
-          <img src="/images/illustrations/mentoring.png" alt="" loading="lazy" />
-          <strong>Mentorship & Tutoring</strong>
-          <p class="small">Academic guidance, progress check-ins, and encouragement that supports student growth.</p>
+          <img src={img("mentoring.webp")} alt="Mentorship and tutoring" loading="lazy" decoding="async" />
+          <strong>Mentorship &amp; Tutoring</strong>
+          <p class="small">Academic guidance and encouragement that supports student growth.</p>
         </div>
+
         <div class="card pad reveal">
-          <img src="/images/illustrations/college.png" alt="" loading="lazy" />
+          <img src={img("college-prep.webp")} alt="College preparation support" loading="lazy" decoding="async" />
           <strong>College Prep Support</strong>
-          <p class="small">Applications, scholarships, and FAFSA/financial aid guidance for high school students.</p>
+          <p class="small">Applications, scholarships, and FAFSA/financial aid guidance.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="banner reveal" style="margin-top:14px;">
-        <strong>Also offered:</strong>
-        <div class="small" style="margin-top:6px;">
-          Parent workshops • Community education nights • Language support • Advocacy guidance for school meetings
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Impact</h2>
+
+      <div class="grid-2">
+        <div class="card pad reveal">
+          <strong class="impact-title">Community First Support</strong>
+          <p class="small">Programs designed to help families navigate school systems.</p>
+          <img src={img("impact-community.webp")} alt="Community impact" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="card pad reveal">
+          <strong class="impact-title">Volunteer Powered</strong>
+          <p class="small">It's a trust network of tutors and mentors committed to student success.</p>
+          <img src={img("volunteer-team.webp")} alt="Volunteer team" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  @media (min-width: 768px) {
+    .grid-2 .card:nth-child(even) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #hero-rotator {
+    transition: opacity 240ms ease-in-out;
+  }
+
+  #hero-rotator.is-fading {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  });
+
+  // Rotate hero image among a small set of local images.
+  const hero = document.querySelector("#hero-rotator");
+  if (hero instanceof HTMLImageElement) {
+    const rawBase = hero.dataset.baseUrl || "/";
+    const base = rawBase.endsWith("/") ? rawBase : rawBase + "/";
+    const images = ["hero-family.webp", "landing-family.webp", "tutoring.webp", "volunteer-team.webp"].map((p) => {
+      return `${base}images/${p}`;
+    });
+
+    // Start at a random image (but keep the initial HTML src for first paint).
+    let i = Math.floor(Math.random() * images.length);
+
+    // Warm cache to reduce flicker on first swap.
+    images.forEach((src) => {
+      const preload = new Image();
+      preload.src = src;
+    });
+
+    const intervalMs = 4500;
+    window.setInterval(() => {
+      i = (i + 1) % images.length;
+      const nextSrc = images[i];
+      if (hero.src === nextSrc) return;
+
+      hero.classList.add("is-fading");
+      window.setTimeout(() => {
+        hero.src = nextSrc;
+        hero.classList.remove("is-fading");
+      }, 240);
+    }, intervalMs);
+  }
+</script>

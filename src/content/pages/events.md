@@ -1,9 +1,9 @@
 ---
 title: "Events & Workshops"
 description: "Upcoming events and workshops for immigrant students and families in Texas."
-heroImage: "/images/hero/landing-family.jpg"
+heroImage: "/images/workshops.webp"
 ctaPrimaryLabel: "See Events"
-ctaPrimaryHref: "/events"
+ctaPrimaryHref: "/events/"
 ---
 
 ## Community Education Nights & Workshops
