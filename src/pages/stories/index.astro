@@ -11,6 +11,37 @@ const stories = await getCollection("stories");
       <div class="card pad reveal">
         <h1 class="h1">Stories & Testimonials</h1>
         <div class="bfn-accent"></div>
+
+        <div class="stories-feature">
+          <div class="card pad" style="box-shadow:none;">
+            <strong class="impact-title">College Dreams Made Real</strong>
+            <p class="small">
+              “Before finding Bright Futures Network, I didn’t know how I would help my child prepare for college...
+              Because of their support, my child is now attending college, something our family once thought was out of reach.”
+            </p>
+            <p class="small"><em>Parent, Houston ISD</em></p>
+          </div>
+
+          <div class="card pad" style="box-shadow:none;">
+            <strong class="impact-title">Finding Belonging in a New Country</strong>
+            <p class="small">
+              “When I arrived in this country, everything felt overwhelming. Bright Futures Network welcomed me with compassion
+              and helped me navigate resources, community connections, and basic needs. Because of them, I no longer feel like a stranger.”
+            </p>
+            <p class="small"><em>M. C. K., Manor ISD</em></p>
+          </div>
+
+          <div class="card pad" style="box-shadow:none;">
+            <strong class="impact-title">A Teacher’s Perspective</strong>
+            <p class="small">
+              “I’ve watched Bright Futures Network quietly change lives. I’ve seen students reach college and newcomers find stability
+              and belonging. The impact may not always be loud, but it is deeply meaningful and long‑lasting.”
+            </p>
+            <p class="small"><em>Teacher, Houston ISD</em></p>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:20px;">All Stories</h2>
         <div class="grid-3">
           {stories.map((s) => (
             <div class="card pad" style="box-shadow:none;">
