@@ -16,6 +16,7 @@ if (!entry) {
 }
 
 const { Content } = await entry.render();
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${entry.data.title} | Bright Futures Network`} description={entry.data.description}>
@@ -27,7 +28,12 @@ const { Content } = await entry.render();
 
         {entry.data.heroImage && (
           <div class="hero-photo" style="margin: 12px 0 16px;">
-            <img src={entry.data.heroImage} alt={entry.data.title} loading="lazy" decoding="async" />
+            <img
+              src={`${base}${entry.data.heroImage.replace(/^\//, "")}`}
+              alt={entry.data.title}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         )}
 
@@ -37,7 +43,9 @@ const { Content } = await entry.render();
 
         {entry.data.ctaPrimaryLabel && entry.data.ctaPrimaryHref && (
           <div class="btnrow" style="margin-top: 14px;">
-            <a class="cta" href={entry.data.ctaPrimaryHref}>{entry.data.ctaPrimaryLabel}</a>
+            <a class="cta" href={`${base}${entry.data.ctaPrimaryHref.replace(/^\//, "")}`}>
+              {entry.data.ctaPrimaryLabel}
+            </a>
           </div>
         )}
       </div>
