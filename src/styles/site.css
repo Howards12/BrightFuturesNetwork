@@ -381,8 +381,8 @@
   .whatsapp-fab {
     position: fixed;
     right: 18px;
-    bottom: 18px;
-    z-index: 70;
+    bottom: 86px;
+    z-index: 60;
     width: 54px;
     height: 54px;
     border-radius: 999px;
