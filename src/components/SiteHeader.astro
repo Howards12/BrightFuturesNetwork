@@ -2,12 +2,12 @@
 const base = import.meta.env.BASE_URL;
 
 // Added trailing slashes to hrefs for better compatibility with GitHub Pages
+// (Donate is rendered as a separate CTA button, not part of this list)
 const nav = [
   { label: "About", href: `${base}about/` },
   { label: "Programs", href: `${base}programs/` },
   { label: "Impact", href: `${base}impact/` },
   { label: "Get Involved", href: `${base}get-involved/` },
-  { label: "Donate", href: `${base}donate/` },
   { label: "Events", href: `${base}events/` },
   { label: "Stories", href: `${base}stories/` },
   { label: "Resources", href: `${base}resources/` },
@@ -24,8 +24,9 @@ const nav = [
     </a>
 
     <nav class="nav" aria-label="Primary">
-      {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+      {nav.slice(0, 4).map((i) => <a href={i.href}>{i.label}</a>)}
       <a class="cta" href={`${base}donate/`}>Donate</a>
+      {nav.slice(4).map((i) => <a href={i.href}>{i.label}</a>)}
     </nav>
 
     <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer">
@@ -34,8 +35,9 @@ const nav = [
   </div>
 
   <div class="container mobile-drawer" id="mobile-drawer">
-    {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+    {nav.slice(0, 4).map((i) => <a href={i.href}>{i.label}</a>)}
     <a class="cta" href={`${base}donate/`}>Donate</a>
+    {nav.slice(4).map((i) => <a href={i.href}>{i.label}</a>)}
   </div>
 </header>
 

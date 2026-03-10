@@ -167,6 +167,27 @@
     text-decoration-color: rgba(143, 183, 255, 0.75);
     text-underline-offset: 2px;
   }
+
+  .bfn-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .bfn-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .bfn-form input,
+  .bfn-form select,
+  .bfn-form textarea {
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font: inherit;
+  }
   
   .hero-cta,
   .btnrow {

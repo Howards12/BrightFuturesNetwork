@@ -3,7 +3,7 @@ title: "Resources"
 description: "Helpful guides for immigrant families navigating school systems, communication, and college preparation."
 heroImage: "/images/tutoring.webp"
 ctaPrimaryLabel: "Get Support"
-ctaPrimaryHref: "/get-involved/"
+ctaPrimaryHref: "/contact/#contact-form"
 ---
 
 ## Resources for Families

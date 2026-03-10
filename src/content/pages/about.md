@@ -3,7 +3,7 @@ title: "About Us"
 description: "Learn about Bright Futures Network and our mission to support K–12 immigrant students and families in Texas."
 heroImage: "/images/landing-family.webp"
 ctaPrimaryLabel: "Get Support"
-ctaPrimaryHref: "/get-involved/"
+ctaPrimaryHref: "/contact/#contact-form"
 ---
 
 ## Who We Are

@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact Us | Bright Futures Network"
+  description="Contact Bright Futures Network for support, volunteering, partnerships, or questions."
+>
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">Contact Bright Futures Network</h1>
+        <div class="bfn-accent"></div>
+
+        <p class="lead">
+          Use this form to request support, ask about volunteering, or start a partnership conversation.
+        </p>
+
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/xjgaywkd"
+          method="POST"
+          class="bfn-form"
+        >
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            <span>Phone / WhatsApp</span>
+            <input type="tel" name="phone" />
+          </label>
+
+          <label>
+            <span>I am a…</span>
+            <select name="role" required>
+              <option value="">Choose one…</option>
+              <option>Student</option>
+              <option>Parent / Guardian</option>
+              <option>Volunteer</option>
+              <option>School / Organization Partner</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>
+            <span>What do you need today?</span>
+            <select name="topic" required>
+              <option value="">Choose one…</option>
+              <option>Get support for a student/family</option>
+              <option>Volunteer with BFN</option>
+              <option>Partner / collaborate</option>
+              <option>General question</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Message / details</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
