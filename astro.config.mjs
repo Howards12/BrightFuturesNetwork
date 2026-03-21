@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   // GitHub Pages project site
-  site: "https://howards12.github.io/BrightFuturesNetwork/",
-  base: "/BrightFuturesNetwork/",
+  site: "https://brightfuturesnetwork.com",
+base: "/",
   integrations: [sitemap()],
 });
