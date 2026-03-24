@@ -17,7 +17,7 @@ Your donation helps provide tutoring, mentorship, workshops, learning resources,
 
 ## Donation Options {#donate-links}
 
-Choose the option that works best for you. Online payment buttons will take you to a short, secure checkout experience once those accounts are live.
+Choose the option that works best for you. The buttons below open a short, secure checkout in a new tab.
 
 ### Online Giving
 
@@ -26,13 +26,13 @@ Choose the option that works best for you. Online payment buttons will take you 
 <div class="donate-option">
   <div class="donate-badge stripe">Stripe</div>
   <p class="small">Fast, secure card payments (Visa, Mastercard, etc.).</p>
-  <a href="#" class="btn secondary" aria-disabled="true">Give with Stripe</a>
+  <a href="https://buy.stripe.com/7sY8wQbQM6TFgld70A5os00" class="btn secondary" target="_blank" rel="noopener noreferrer">Give with Stripe</a>
 </div>
 
 <div class="donate-option">
   <div class="donate-badge paypal">PayPal</div>
   <p class="small">Use your PayPal balance or connected bank/card.</p>
-  <a href="#" class="btn secondary" aria-disabled="true">Give with PayPal</a>
+  <a href="https://www.paypal.com/ncp/payment/3NXGURDJX3TUY" class="btn secondary" target="_blank" rel="noopener noreferrer">Give with PayPal</a>
 </div>
 
 </div>
