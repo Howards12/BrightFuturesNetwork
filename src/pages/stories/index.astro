@@ -48,7 +48,7 @@ const stories = await getCollection("stories");
               <strong>{s.data.title}</strong>
               <div class="small">{s.data.personType ?? "Story"}</div>
               <div class="small">
-                <a href={`/stories/${s.slug}`}>Read</a>
+                <a href={`/stories/${s.id}`}>Read</a>
               </div>
             </div>
           ))}

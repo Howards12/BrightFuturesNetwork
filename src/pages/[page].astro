@@ -1,21 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
-  return pages.map((p) => ({ params: { page: p.slug } }));
+  return pages.map((p) => ({ params: { page: p.id } }));
 }
 
 const { page } = Astro.params;
 const pages = await getCollection("pages");
-const entry = pages.find((p) => p.slug === page);
+const entry = pages.find((p) => p.id === page);
 if (!entry) {
   // Let Astro handle as a 404 at runtime; during build this shouldn't happen.
   throw new Error(`Unknown page slug: ${page}`);
 }
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL;
 ---
 

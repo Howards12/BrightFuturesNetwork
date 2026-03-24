@@ -14,7 +14,7 @@ posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
         <div class="bfn-accent"></div>
         <div class="grid-3">
           {posts.map((p) => (
-            <a class="card pad" style="box-shadow:none;" href={`/news/${p.slug}`}>
+            <a class="card pad" style="box-shadow:none;" href={`/news/${p.id}`}>
               <strong>{p.data.title}</strong>
               <div class="small">{p.data.date}</div>
               <div class="small">{p.data.description ?? ""}</div>

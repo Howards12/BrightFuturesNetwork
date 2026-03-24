@@ -1,23 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const stories = await getCollection("stories");
   return stories.map((s) => ({
-    params: { slug: s.slug },
+    params: { slug: s.id },
   }));
 }
 
 const { slug } = Astro.params;
 const stories = await getCollection("stories");
-const entry = stories.find((s) => s.slug === slug);
+const entry = stories.find((s) => s.id === slug);
 
 if (!entry) {
   throw new Error(`Unknown story: ${slug}`);
 }
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <BaseLayout
