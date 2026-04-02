@@ -1,0 +1,208 @@
+---
+/**
+ * Payment URLs: replace monthly/annual with subscription-specific Stripe/PayPal links
+ * when available in your dashboards (currently all frequencies use the same checkout).
+ */
+const STRIPE = {
+  oneTime: "https://buy.stripe.com/7sY8wQbQM6TFgld70A5os00",
+  monthly: "https://buy.stripe.com/7sY8wQbQM6TFgld70A5os00",
+  annual: "https://buy.stripe.com/7sY8wQbQM6TFgld70A5os00",
+} as const;
+
+const PAYPAL = {
+  oneTime: "https://www.paypal.com/ncp/payment/3NXGURDJX3TUY",
+  monthly: "https://www.paypal.com/ncp/payment/3NXGURDJX3TUY",
+  annual: "https://www.paypal.com/ncp/payment/3NXGURDJX3TUY",
+} as const;
+
+const presets = [25, 50, 100, 250] as const;
+---
+
+<div class="donate-checkout" id="donate-checkout">
+  <div class="donate-field">
+    <label class="donate-label" for="donate-freq">
+      <span class="donate-label-text">Donation frequency</span>
+      <span class="donate-required" aria-hidden="true">*</span>
+    </label>
+    <select id="donate-freq" class="donate-select" autocomplete="off">
+      <option value="oneTime">One-time</option>
+      <option value="monthly">Monthly (recurring)</option>
+      <option value="annual">Annual (recurring)</option>
+    </select>
+  </div>
+
+  <fieldset class="donate-field donate-fieldset">
+    <legend class="donate-label">
+      <span class="donate-label-text">Amount</span>
+      <span class="donate-required" aria-hidden="true">*</span>
+    </legend>
+    <p class="small donate-hint">Choose a suggested amount or enter your own.</p>
+    <div class="donate-presets" role="group" aria-label="Suggested amounts">
+      {presets.map((n) => (
+        <button type="button" class="donate-preset" data-amount={n}>
+          ${n}
+        </button>
+      ))}
+      <button type="button" class="donate-preset donate-preset-other" data-other="true">
+        Other
+      </button>
+    </div>
+    <div class="donate-custom-wrap" id="donate-custom-wrap" hidden>
+      <label class="donate-sublabel" for="donate-custom">Custom amount (USD)</label>
+      <div class="donate-custom-row">
+        <span class="donate-currency" aria-hidden="true">$</span>
+        <input
+          type="number"
+          id="donate-custom"
+          class="donate-custom-input"
+          min="1"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="0.00"
+          aria-describedby="donate-custom-help"
+        />
+      </div>
+      <p id="donate-custom-help" class="small donate-hint">
+        Enter a whole dollar amount or cents (e.g. 75 or 75.50).
+      </p>
+    </div>
+  </fieldset>
+
+  <div class="donate-summary" id="donate-summary" role="status" aria-live="polite"></div>
+
+  <div class="donate-actions">
+    <a id="donate-stripe" class="btn secondary donate-pay" href={STRIPE.oneTime} target="_blank" rel="noopener noreferrer">
+      Continue with Stripe
+    </a>
+    <a id="donate-paypal" class="btn secondary donate-pay" href={PAYPAL.oneTime} target="_blank" rel="noopener noreferrer">
+      Continue with PayPal
+    </a>
+  </div>
+
+  <p class="small donate-footnote">
+    You’ll complete payment on Stripe or PayPal’s secure page. If prompted for an amount, use the
+    <strong id="donate-footnote-amt">amount you selected above</strong>. For recurring gifts, choose
+    the matching subscription or recurring option on the checkout page when it’s available—or email
+    <a href="mailto:info@brightfuturesnetwork.com">info@brightfuturesnetwork.com</a> and we’ll help
+    set up your gift.
+  </p>
+</div>
+
+<script
+  define:vars={{
+    STRIPE,
+    PAYPAL,
+    presets: [...presets],
+  }}
+>
+  (function () {
+    const freqEl = document.getElementById("donate-freq");
+    const summaryEl = document.getElementById("donate-summary");
+    const customWrap = document.getElementById("donate-custom-wrap");
+    const customInput = document.getElementById("donate-custom");
+    const footnoteAmt = document.getElementById("donate-footnote-amt");
+    const stripeEl = document.getElementById("donate-stripe");
+    const paypalEl = document.getElementById("donate-paypal");
+    const presetBtns = document.querySelectorAll(".donate-preset");
+
+    let selectedPreset = 50;
+    let useCustom = false;
+
+    function formatMoney(n) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(n);
+    }
+
+    function getFrequencyKey() {
+      const v = freqEl?.value;
+      if (v === "monthly" || v === "annual") return v;
+      return "oneTime";
+    }
+
+    function getAmount() {
+      if (useCustom) {
+        const raw = customInput?.value?.trim();
+        const n = raw ? Number.parseFloat(raw) : NaN;
+        return Number.isFinite(n) && n > 0 ? n : NaN;
+      }
+      return selectedPreset;
+    }
+
+    function updateLinks() {
+      const fk = getFrequencyKey();
+      const su = STRIPE[fk];
+      const pu = PAYPAL[fk];
+      if (stripeEl) stripeEl.setAttribute("href", su);
+      if (paypalEl) paypalEl.setAttribute("href", pu);
+    }
+
+    function renderSummary() {
+      const fk = getFrequencyKey();
+      const amt = getAmount();
+      const freqLabel =
+        fk === "monthly" ? "monthly (recurring)" : fk === "annual" ? "annual (recurring)" : "one-time";
+
+      if (!summaryEl) return;
+
+      if (!Number.isFinite(amt)) {
+        summaryEl.innerHTML =
+          '<span class="donate-summary-warn">Enter a valid amount above to see your gift summary.</span>';
+        if (footnoteAmt) footnoteAmt.textContent = "amount you enter above";
+        return;
+      }
+
+      summaryEl.innerHTML = `<strong>${formatMoney(amt)}</strong> · ${freqLabel}. Use this amount on the checkout page if asked.`;
+      if (footnoteAmt) footnoteAmt.textContent = formatMoney(amt);
+    }
+
+    function syncPresets() {
+      presetBtns.forEach((btn) => {
+        const el = btn;
+        const a = el.dataset.amount;
+        const isOther = el.dataset.other === "true";
+        let on = false;
+        if (isOther) on = useCustom;
+        else if (!useCustom && a) on = Number(a) === selectedPreset;
+        el.classList.toggle("is-active", on);
+      });
+    }
+
+    presetBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const isOther = btn.dataset.other === "true";
+        if (isOther) {
+          useCustom = true;
+          if (customWrap) customWrap.hidden = false;
+          customInput?.focus();
+        } else {
+          useCustom = false;
+          const a = btn.dataset.amount;
+          selectedPreset = a ? Number(a) : 50;
+          if (customWrap) customWrap.hidden = true;
+          if (customInput) customInput.value = "";
+        }
+        syncPresets();
+        renderSummary();
+      });
+    });
+
+    freqEl?.addEventListener("change", () => {
+      updateLinks();
+      renderSummary();
+    });
+
+    customInput?.addEventListener("input", () => {
+      renderSummary();
+    });
+
+    // Default: $50 preset
+    selectedPreset = 50;
+    useCustom = false;
+    if (customWrap) customWrap.hidden = true;
+    syncPresets();
+    updateLinks();
+    renderSummary();
+  })();
+</script>

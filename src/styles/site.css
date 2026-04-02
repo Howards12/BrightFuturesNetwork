@@ -233,6 +233,186 @@
     background: linear-gradient(135deg, #003087, #009cde);
   }
 
+  .bfn-legal-callout {
+    margin: 0 0 22px;
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(244, 166, 184, 0.12), rgba(143, 183, 255, 0.1));
+    text-align: center;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+  .bfn-legal-callout p {
+    margin: 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .donate-checkout {
+    margin: 12px 0 22px;
+    padding: 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #fff;
+    max-width: 40rem;
+  }
+  .donate-field {
+    margin-bottom: 16px;
+  }
+  .donate-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 14px;
+  }
+  .donate-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .donate-label-text {
+    font-family: "Baloo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .donate-required {
+    color: #c43d4e;
+    font-weight: 700;
+  }
+  .donate-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font: inherit;
+    background: #fff;
+  }
+  .donate-hint {
+    margin: 0 0 10px;
+  }
+  .donate-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .donate-preset {
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #f7f9fc;
+    font: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .donate-preset:hover {
+    background: #eef3fb;
+  }
+  .donate-preset.is-active {
+    border-color: rgba(143, 183, 255, 0.85);
+    background: rgba(143, 183, 255, 0.18);
+    box-shadow: 0 0 0 1px rgba(143, 183, 255, 0.35);
+  }
+  .donate-custom-wrap {
+    margin-top: 4px;
+  }
+  .donate-sublabel {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .donate-custom-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 12rem;
+  }
+  .donate-currency {
+    font-weight: 700;
+    color: var(--text);
+  }
+  .donate-custom-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font: inherit;
+  }
+  .donate-summary {
+    margin: 12px 0 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f7f9fc;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .donate-summary-warn {
+    color: #9a4b2f;
+  }
+  .donate-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .donate-pay {
+    flex: 1 1 160px;
+    text-align: center;
+    justify-content: center;
+  }
+  .donate-footnote {
+    margin: 0;
+    max-width: 48rem;
+  }
+
+  .donate-mail {
+    margin: 12px 0 20px;
+    padding: 22px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #fff;
+    text-align: center;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+  .donate-mail-title {
+    font-family: "Baloo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    color: #b8860b;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .donate-mail p {
+    margin: 0 0 8px;
+    color: var(--muted);
+  }
+  .donate-mail .donate-mail-payee {
+    font-size: 17px;
+    color: var(--text);
+    margin: 4px 0 14px;
+  }
+  .donate-mail-address {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 8px 0 12px;
+  }
+
   .stories-feature {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -355,6 +535,13 @@
   }
   
   .footer { border-top: 1px solid var(--border); padding: 24px 0; margin-top: 30px; color: var(--muted); }
+  .footer-legal {
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    max-width: 52rem;
+  }
   .kv { display: flex; gap: 14px; flex-wrap: wrap; }
   .kv strong { color: var(--text); }
   .ai-credit {

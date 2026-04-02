@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DonateCheckout from "../components/DonateCheckout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+---
+
+<BaseLayout
+  title="Donate | Bright Futures Network"
+  description="Support Bright Futures Network—your donation helps immigrant students and families access education support."
+>
+  <section class="section">
+    <div class="container">
+      <div class="card pad reveal">
+        <h1 class="h1">Donate</h1>
+        <div class="bfn-accent"></div>
+
+        <div class="hero-photo" style="margin: 12px 0 16px;">
+          <img src={`${base}images/hero-family.webp`} alt="Donate" loading="lazy" decoding="async" />
+        </div>
+
+        <article class="prose">
+          <div class="bfn-legal-callout">
+            <p>
+              <strong>Bright Futures Network</strong> is a 501(c)(3) nonprofit organization recognized as tax-exempt by
+              the IRS. Our mission is to empower immigrant students and families through education support—tutoring,
+              mentorship, workshops, learning resources, and family-centered outreach—so every learner can build a
+              brighter future. <strong>Donations to Bright Futures Network are tax-deductible</strong> to the fullest
+              extent allowed by law. Please retain your email receipt or acknowledgment letter for your records.
+            </p>
+          </div>
+
+          <h2>Support a Brighter Future</h2>
+          <p>
+            Your donation helps provide tutoring, mentorship, workshops, learning resources, and family support.
+          </p>
+
+          <h3>Where Donations Go</h3>
+          <ul>
+            <li>Program materials and workshop supplies</li>
+            <li>Transportation and family support logistics</li>
+            <li>Student learning resources</li>
+            <li>Tools that improve communication and outreach</li>
+          </ul>
+
+          <h2 id="donate-links">Donation Options</h2>
+          <p>
+            Choose how often you’d like to give, pick or enter an amount, then continue to Stripe or PayPal in a new tab.
+          </p>
+
+          <h3>Online Giving</h3>
+          <DonateCheckout />
+
+          <h3>Mail a Check</h3>
+          <div class="donate-mail">
+            <p class="donate-mail-title">Mail-in donations (check)</p>
+            <p>Make checks payable to:</p>
+            <p class="donate-mail-payee"><strong>Bright Futures Network</strong></p>
+            <p>Mail to:</p>
+            <address class="donate-mail-address">
+              20703 Phebe Foster St<br />
+              Manor, TX 78653
+            </address>
+            <p class="small">
+              Please include a note or memo with your name and email so we can thank you and send a tax acknowledgment.
+            </p>
+          </div>
+
+          <h3>Zelle</h3>
+          <ul>
+            <li><strong>Zelle phone:</strong> 346-754-9468</li>
+            <li>Please add “Bright Futures Network” in the note or memo.</li>
+          </ul>
+
+          <h3>Credit / Debit Card by Phone</h3>
+          <p>Prefer to speak with someone? You can call or message:</p>
+          <ul>
+            <li><strong>Phone / WhatsApp:</strong> 346-754-9468</li>
+          </ul>
+          <p>A team member will guide you through a simple, secure process to complete your gift.</p>
+
+          <h3>Bank Transfer</h3>
+          <p>
+            For bank transfer details, use the <a href={`${base}contact/`}>Contact</a> form, call / WhatsApp
+            <strong>346-754-9468</strong>, or email
+            <a href="mailto:info@brightfuturesnetwork.com">info@brightfuturesnetwork.com</a>.
+          </p>
+        </article>
+
+        <div class="btnrow" style="margin-top: 14px;">
+          <a class="cta" href="#donate-links"> Donate Now </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

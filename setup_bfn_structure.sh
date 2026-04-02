@@ -37,7 +37,7 @@ touch public/admin/index.html \
   src/content/pages/programs.md \
   src/content/pages/impact.md \
   src/content/pages/get-involved.md \
-  src/content/pages/donate.md \
+  src/pages/donate.astro \
   src/content/pages/events.md \
   src/content/pages/stories.md \
   src/content/pages/resources.md \
